@@ -22,14 +22,14 @@ public class FlightDatabase {
         }
     }
 
-    public boolean checkIfFlightExists(String departure, String arrival){
-        for(int i=0; i<this.flights.size(); i++){
-            Flight flight;
-            flight = flights.get(i);
-            if(flight.getDeparture() == departure && flight.getArrival() == arrival){
+    public boolean checkIfFlightExists(String[] request){
+        for (Flight flight : this.flights) {
+            if (flight.getDeparture().equals(request[0]) && flight.getArrival().equals(request[1])) {
+                System.out.println("Flight exists.");
                 return true;
             }
         }
+        System.out.println("Flight not exists.");
         return false;
     }
 
