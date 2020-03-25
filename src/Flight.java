@@ -1,17 +1,19 @@
 public class Flight {
     private String departure;
     private String arrival;
+    private int price;
 
     // Constructor
-    public Flight(String departure, String arrival) {
+    public Flight(String departure, String arrival, int price) {
         this.arrival = arrival;
         this.departure = departure;
+        this.price = price;
     }
 
-    // Getters
-    public void getDetails() {
-        System.out.println("Flight from: " + this.departure
-                + " to: " + this.arrival);
+    // Get
+    public String getDetails() {
+        return "Flight from: " + this.departure + " to: " + this.arrival +
+                " cost " + this.price;
     }
 
     public String getDeparture() {
@@ -20,5 +22,9 @@ public class Flight {
 
     public String getArrival() {
         return arrival;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

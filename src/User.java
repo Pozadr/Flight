@@ -13,7 +13,7 @@ public class User {
         return nick;
     }
 
-    public String[] getRequestFromUser(){
+    public String[] getRequestFromUser(){  //String["departure", "arrival"]
         Scanner keyboard = new Scanner(System.in);
         String[] request = new String[2];
         System.out.println("Type departure: ");
