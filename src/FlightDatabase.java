@@ -6,33 +6,33 @@ public class FlightDatabase {
 
     public FlightDatabase(){
         this.flights.add(new Flight("Berlin", "Tokyo",
-                1800));
+                1800, "12h 50min"));
         this.flights.add(new Flight("Paris", "Berlin",
-                79));
+                79, "1h 10min"));
         this.flights.add(new Flight("Warsaw", "Paris",
-                120));
+                120, "2h 45min"));
         this.flights.add(new Flight("Warsaw", "Paris",
-                90));
+                190, "1h 20min"));
         this.flights.add(new Flight("Madrid", "Berlin",
-                200));
+                200, "1h 10min"));
         this.flights.add(new Flight("Berlin", "Warsaw",
-                77));
+                77, "0h 50min"));
         this.flights.add(new Flight("Paris", "Madrid",
-                180));
+                180, "1h 20min"));
         this.flights.add(new Flight("Porto", "Warsaw",
-                412));
+                412, "4h 20min"));
         this.flights.add(new Flight("Madrid", "Porto",
-                102));
+                102, "2h 10min"));
         this.flights.add(new Flight("Warsaw", "Madrid",
-                380));
+                380, "3h 10min"));
         this.flights.add(new Flight("Tokyo", "Warsaw",
-                2000));
+                2000, "10h 20min"));
         this.flights.add(new Flight("Paris", "Warsaw",
-                130));
+                130, "2h 40min"));
         this.flights.add(new Flight("Warsaw", "Barcelona",
-                160));
+                160, "3h 20min"));
         this.flights.add(new Flight("Barcelona", "Berlin",
-                30));
+                30, "2h 30min"));
     }
     // ------------------------------------------------------------------------------
 

@@ -2,12 +2,14 @@ public class Flight {
     private String departure;
     private String arrival;
     private int price;
+    private String flightTime;
 
     // Constructor
-    public Flight(String departure, String arrival, int price) {
+    public Flight(String departure, String arrival, int price, String flightTime) {
         this.arrival = arrival;
         this.departure = departure;
         this.price = price;
+        this.flightTime = flightTime;
     }
 
     // Get
@@ -26,5 +28,9 @@ public class Flight {
 
     public int getPrice() {
         return price;
+    }
+
+    public String getFlightTime() {
+        return flightTime;
     }
 }
