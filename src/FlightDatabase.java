@@ -11,6 +11,8 @@ public class FlightDatabase {
                 79));
         this.flights.add(new Flight("Warsaw", "Paris",
                 120));
+        this.flights.add(new Flight("Warsaw", "Paris",
+                90));
         this.flights.add(new Flight("Madrid", "Berlin",
                 200));
         this.flights.add(new Flight("Berlin", "Warsaw",
@@ -94,10 +96,11 @@ public class FlightDatabase {
     public void displayCheapestJourney(String start, String end){
         Journey result = getCheapestJourney(start, end);
         if(result == null){
-            System.out.println("Flight not found.");
+            System.out.println("Journey from " + start +
+                    " to " + end + " not found.");
         }
         else{
-            System.out.println("Cheapest flight is:");
+            System.out.println("Cheapest journey is:");
             System.out.println(result.getDetails());
         }
     }
@@ -205,12 +208,23 @@ public class FlightDatabase {
     public boolean checkIfFlightExists(String departure, String arrival){
         for (Flight flight : this.flights) {
             if (flight.getDeparture().equals(departure) && flight.getArrival().equals(arrival)) {
-                System.out.println("Flight exists.");
+                //System.out.println("Direct flight exists.");
                 return true;
             }
         }
-        System.out.println("Flight not exists.");
+        //System.out.println("Flight not exists.");
         return false;
+    }
+
+    public void manageRequest(String start, String end){
+        if (checkIfFlightExists(start, end)) {
+            displayCheapestFlightFromCity(start);
+        }
+        else{
+            System.out.println("There is no direct flight from " +
+            start + " to " + end + ".");
+            displayCheapestJourney(start, end);
+        }
     }
     // ------------------------------------------------------------------------------
 

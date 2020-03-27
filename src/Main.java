@@ -23,7 +23,9 @@ public class Main {
 
         //flightDatabase.displayCheapestFlightToCity("Warsaw");
 
-        flightDatabase.displayFlights("Warsaw", "Berlin");
-        flightDatabase.displayCheapestJourney("Warsaw", "Berlin");
+        //flightDatabase.displayFlights("Warsaw", "Berlin");
+        //flightDatabase.displayCheapestJourney("Warsaw", "Berlin");
+
+        flightDatabase.manageRequest("Warsaw", "dfghf");
     }
 }
