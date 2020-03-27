@@ -15,7 +15,7 @@ public class Flight {
     // Get
     public String getDetails() {
         return "Flight from: " + this.departure + " to: " + this.arrival +
-                " cost " + this.price;
+                " cost " + this.price + ". Flight time: " + flightTime;
     }
 
     public String getDeparture() {
@@ -30,7 +30,13 @@ public class Flight {
         return price;
     }
 
-    public String getFlightTime() {
+    public String getFlightTimeString() {
         return flightTime;
+    }
+
+    public int getFlightTimeInInt(){
+        int h = Integer.parseInt(this.flightTime.substring(0,2));
+        int min = Integer.parseInt(this.flightTime.substring(4,6));
+        return h * 60 + min;
     }
 }

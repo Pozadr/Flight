@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class FlightDatabase {
@@ -7,36 +6,60 @@ public class FlightDatabase {
     public FlightDatabase(){
         this.flights.add(new Flight("Berlin", "Tokyo",
                 1800, "12h 50min"));
-        this.flights.add(new Flight("Paris", "Berlin",
-                79, "1h 10min"));
-        this.flights.add(new Flight("Warsaw", "Paris",
-                120, "2h 45min"));
-        this.flights.add(new Flight("Warsaw", "Paris",
-                190, "1h 20min"));
-        this.flights.add(new Flight("Madrid", "Berlin",
-                200, "1h 10min"));
         this.flights.add(new Flight("Berlin", "Warsaw",
-                77, "0h 50min"));
+                77, "00h 50min"));
+        this.flights.add(new Flight("Paris", "Berlin",
+                79, "01h 10min"));
         this.flights.add(new Flight("Paris", "Madrid",
-                180, "1h 20min"));
-        this.flights.add(new Flight("Porto", "Warsaw",
-                412, "4h 20min"));
+                180, "01h 20min"));
+        this.flights.add(new Flight("Paris", "Warsaw",
+                130, "02h 40min"));
+        this.flights.add(new Flight("Madrid", "Berlin",
+                200, "01h 10min"));
         this.flights.add(new Flight("Madrid", "Porto",
-                102, "2h 10min"));
-        this.flights.add(new Flight("Warsaw", "Madrid",
-                380, "3h 10min"));
+                102, "02h 10min"));
+        this.flights.add(new Flight("Porto", "Warsaw",
+                412, "04h 20min"));
+        this.flights.add(new Flight("Barcelona", "Berlin",
+                30, "02h 30min"));
         this.flights.add(new Flight("Tokyo", "Warsaw",
                 2000, "10h 20min"));
-        this.flights.add(new Flight("Paris", "Warsaw",
-                130, "2h 40min"));
+        this.flights.add(new Flight("Warsaw", "Paris",
+                120, "02h 45min"));
+        this.flights.add(new Flight("Warsaw", "Paris",
+                190, "01h 20min"));
+        this.flights.add(new Flight("Warsaw", "Paris",
+                300, "01h 20min"));
+        this.flights.add(new Flight("Warsaw", "Berlin",
+                100, "01h 20min"));
+        this.flights.add(new Flight("Warsaw", "Madrid",
+                380, "03h 10min"));
         this.flights.add(new Flight("Warsaw", "Barcelona",
-                160, "3h 20min"));
-        this.flights.add(new Flight("Barcelona", "Berlin",
-                30, "2h 30min"));
+                160, "03h 20min"));
     }
     // ------------------------------------------------------------------------------
 
     //Display
+    public void displayDirectFlights(String start, String end){
+        ArrayList<Flight> results = getDirectFlights(start, end);
+        if(results.isEmpty()){
+            System.out.println("Flight not found.");
+        }
+        for(Flight result : results){
+            System.out.println(result.getDetails());
+        }
+    }
+
+    public void displayJourneyFlights(String start, String end){
+        ArrayList<Journey> results = getJourneyFlights(start, end);
+        if(results.isEmpty()){
+            System.out.println("Flight not found.");
+        }
+        for(Journey result : results){
+            System.out.println(result.getDetails());
+        }
+    }
+
     public void displayAllFlights(){
         if(this.flights.isEmpty()){
             System.out.println("Flight not found.");
@@ -66,16 +89,7 @@ public class FlightDatabase {
         }
     }
 
-    public void displayFlights(String start, String end){
-        ArrayList<Journey> results = getFlights(start, end);
-        if(results.isEmpty()){
-            System.out.println("Flight not found.");
-        }
-        for(Journey result : results){
-            System.out.println(result.getDetails());
-        }
-    }
-
+    // Display cheapest flight from all flights in data base.
     public void displayCheapestFlight(){
         Flight results = getCheapestFlight();
         System.out.println("Cheapest flight:\n" + results.getDetails());
@@ -93,6 +107,11 @@ public class FlightDatabase {
                 cheapestFlightToCity.getDetails());
     }
 
+    public void displayCheapestDirectFlight(String start, String end){
+        Flight results = getCheapestDirectFlight(start, end);
+        System.out.println("Cheapest direct flight:\n" + results.getDetails());
+    }
+
     public void displayCheapestJourney(String start, String end){
         Journey result = getCheapestJourney(start, end);
         if(result == null){
@@ -105,10 +124,28 @@ public class FlightDatabase {
         }
     }
 
+    public void displayShortestDirectFlight(String start, String end){
+        Flight shortestDirectFlight = getShortestDirectFlight(start, end);
+        System.out.println("Shortest flight from " + start + " to " + end +
+                ":\n" + shortestDirectFlight.getDetails());
+    }
     // ------------------------------------------------------------------------------
 
     // Get
-    public ArrayList<Journey> getFlights(String start, String end) {
+    public ArrayList<Flight> getDirectFlights(String start, String end){
+        ArrayList<Flight> result = new ArrayList<>();
+        for (Flight flight : this.flights) {
+            if (flight.getDeparture().equals(start) &&
+                    flight.getArrival().equals(end)) {
+                //System.out.println("Direct flight exists.");
+                result.add(flight);
+            }
+        }
+        //System.out.println("Flight not exists.");
+        return result;
+    }
+
+    public ArrayList<Journey> getJourneyFlights(String start, String end) {
         ArrayList<Flight> startList = getFlightsFromCity(start);
         ArrayList<Flight> endList = getFlightsToCity(end);
         ArrayList<Journey> results = new ArrayList<>();
@@ -143,6 +180,7 @@ public class FlightDatabase {
         return results;
     }
 
+    // Get all cities from database.
     public ArrayList<String> getCities(){
         ArrayList<String> cities = new ArrayList<>();
         for(Flight flight : this.flights){
@@ -156,6 +194,7 @@ public class FlightDatabase {
         return cities;
     }
 
+    // Get cheapest flight from all flights in database.
     public Flight getCheapestFlight(){
         Flight cheapestFlight = null;
         for(Flight flight : this.flights){
@@ -191,16 +230,40 @@ public class FlightDatabase {
         return cheapestFlight;
     }
 
-    public Journey getCheapestJourney(String start, String end){
-        ArrayList<Journey> journeys = getFlights(start, end);
+    public Flight getCheapestDirectFlight(String start, String end){
+        ArrayList<Flight> flights = getDirectFlights(start, end);
+        Flight cheapestDirectFlight = null;
+        for(Flight flight : flights){
+            if(cheapestDirectFlight == null || flight.getPrice() <
+                    cheapestDirectFlight.getPrice()){
+                cheapestDirectFlight = flight;
+            }
+        }
+        return cheapestDirectFlight;
+    }
+
+    public Journey getCheapestJourney(String start, String end) {
+        ArrayList<Journey> journeys = getJourneyFlights(start, end);
         Journey cheapestJourney = null;
-        for(Journey journey : journeys){
-            if(cheapestJourney == null || journey.getJourneyPrice() <
-            cheapestJourney.getJourneyPrice()){
+        for (Journey journey : journeys) {
+            if (cheapestJourney == null || journey.getJourneyPrice() <
+                    cheapestJourney.getJourneyPrice()) {
                 cheapestJourney = journey;
             }
         }
-        return  cheapestJourney;
+        return cheapestJourney;
+    }
+
+    public Flight getShortestDirectFlight(String start, String end){
+        ArrayList<Flight> flights = getDirectFlights(start, end);
+        Flight shortestFlight = null;
+        for(Flight flight : flights){
+            if(shortestFlight == null || flight.getFlightTimeInInt() <
+                    shortestFlight.getFlightTimeInInt()){
+                shortestFlight = flight;
+            }
+        }
+        return shortestFlight;
     }
     // ------------------------------------------------------------------------------
 
@@ -218,7 +281,8 @@ public class FlightDatabase {
 
     public void manageRequest(String start, String end){
         if (checkIfFlightExists(start, end)) {
-            displayCheapestFlightFromCity(start);
+            displayCheapestDirectFlight(start, end);
+            displayShortestDirectFlight(start, end);
         }
         else{
             System.out.println("There is no direct flight from " +

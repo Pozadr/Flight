@@ -28,7 +28,8 @@ public class Main {
         //flightDatabase.displayFlights("Warsaw", "Berlin");
         //flightDatabase.displayCheapestJourney("Warsaw", "Berlin");
 
-        //flightDatabase.manageRequest("Warsaw", "dfghf");
+        //flightDatabase.displayDirectFlights("Warsaw", "Paris");
 
+        flightDatabase.manageRequest("Tokyo", "Berlin");
     }
 }
