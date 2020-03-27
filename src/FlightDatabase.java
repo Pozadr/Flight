@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class FlightDatabase {
@@ -26,6 +27,10 @@ public class FlightDatabase {
                 2000));
         this.flights.add(new Flight("Paris", "Warsaw",
                 130));
+        this.flights.add(new Flight("Warsaw", "Barcelona",
+                160));
+        this.flights.add(new Flight("Barcelona", "Berlin",
+                30));
     }
     // ------------------------------------------------------------------------------
 
@@ -84,6 +89,17 @@ public class FlightDatabase {
         Flight cheapestFlightToCity = getCheapestFlightToCity(city);
         System.out.println("Cheapest flight to " + city + ":\n" +
                 cheapestFlightToCity.getDetails());
+    }
+
+    public void displayCheapestJourney(String start, String end){
+        Journey result = getCheapestJourney(start, end);
+        if(result == null){
+            System.out.println("Flight not found.");
+        }
+        else{
+            System.out.println("Cheapest flight is:");
+            System.out.println(result.getDetails());
+        }
     }
 
     // ------------------------------------------------------------------------------
@@ -171,12 +187,24 @@ public class FlightDatabase {
         }
         return cheapestFlight;
     }
+
+    public Journey getCheapestJourney(String start, String end){
+        ArrayList<Journey> journeys = getFlights(start, end);
+        Journey cheapestJourney = null;
+        for(Journey journey : journeys){
+            if(cheapestJourney == null || journey.getJourneyPrice() <
+            cheapestJourney.getJourneyPrice()){
+                cheapestJourney = journey;
+            }
+        }
+        return  cheapestJourney;
+    }
     // ------------------------------------------------------------------------------
 
     // Others
-    public boolean checkIfFlightExists(String[] request){  //String["departure", "arrival"]
+    public boolean checkIfFlightExists(String departure, String arrival){
         for (Flight flight : this.flights) {
-            if (flight.getDeparture().equals(request[0]) && flight.getArrival().equals(request[1])) {
+            if (flight.getDeparture().equals(departure) && flight.getArrival().equals(arrival)) {
                 System.out.println("Flight exists.");
                 return true;
             }

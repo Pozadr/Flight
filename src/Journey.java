@@ -22,6 +22,10 @@ public class Journey {
                 " costs " + (first.getPrice() + second.getPrice());
     }
 
+    public int getJourneyPrice(){
+        return first.getPrice() + second.getPrice();
+    }
+
     @Override
     public String toString() {
         return "Flight from " + first.getDeparture() + " to "

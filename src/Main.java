@@ -11,7 +11,8 @@ public class Main {
         //flightDatabase.displayFlightsFromCity("Warsaw");
         //flightDatabase.displayFlightsToCity("Paris");
 
-        //flightDatabase.checkIfFlightExists(user1.getRequestFromUser());
+        //flightDatabase.checkIfFlightExists("Warsaw", "Paris"); // true
+        //flightDatabase.checkIfFlightExists("Warsaw", "Berlin"); // false
 
         //ArrayList<String> cities = flightDatabase.getCities();
         //System.out.println(cities);
@@ -22,6 +23,7 @@ public class Main {
 
         //flightDatabase.displayCheapestFlightToCity("Warsaw");
 
-        //flightDatabase.displayFlights("Warsaw", "Porto");
+        flightDatabase.displayFlights("Warsaw", "Berlin");
+        flightDatabase.displayCheapestJourney("Warsaw", "Berlin");
     }
 }
