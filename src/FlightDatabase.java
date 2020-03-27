@@ -22,6 +22,10 @@ public class FlightDatabase {
                 102));
         this.flights.add(new Flight("Warsaw", "Madrid",
                 380));
+        this.flights.add(new Flight("Tokyo", "Warsaw",
+                2000));
+        this.flights.add(new Flight("Paris", "Warsaw",
+                130));
     }
     // ------------------------------------------------------------------------------
 
@@ -64,6 +68,24 @@ public class FlightDatabase {
             System.out.println(result.getDetails());
         }
     }
+
+    public void displayCheapestFlight(){
+        Flight results = getCheapestFlight();
+        System.out.println("Cheapest flight:\n" + results.getDetails());
+    }
+
+    public void displayCheapestFlightFromCity(String city){
+        Flight cheapestFlightFromCity = getCheapestFlightFromCity(city);
+        System.out.println("Cheapest flight from " + city + ":\n" +
+                cheapestFlightFromCity.getDetails());
+    }
+
+    public void displayCheapestFlightToCity(String city){
+        Flight cheapestFlightToCity = getCheapestFlightToCity(city);
+        System.out.println("Cheapest flight to " + city + ":\n" +
+                cheapestFlightToCity.getDetails());
+    }
+
     // ------------------------------------------------------------------------------
 
     // Get
@@ -81,7 +103,6 @@ public class FlightDatabase {
         }
         return results;
     }
-
 
     public ArrayList<Flight> getFlightsFromCity(String city){
         ArrayList<Flight> results = new ArrayList<>();

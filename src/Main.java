@@ -16,19 +16,12 @@ public class Main {
         //ArrayList<String> cities = flightDatabase.getCities();
         //System.out.println(cities);
 
-        //Flight cheapestFlight = flightDatabase.getCheapestFlight();
-        //System.out.println("Cheapest flight:\n" + cheapestFlight.getDetails());
+        //flightDatabase.displayCheapestFlight();
 
-        /*String fromCity = "Warsaw";
-        Flight cheapestFlightFromCity = flightDatabase.getCheapestFlightFromCity(fromCity);
-        System.out.println("Cheapest flight from " + fromCity + ":\n" +
-                cheapestFlightFromCity.getDetails());
+        //flightDatabase.displayCheapestFlightFromCity("Warsaw");
 
-        String toCity = "Warsaw";
-        Flight cheapestFlightToCity = flightDatabase.getCheapestFlightToCity(toCity);
-        System.out.println("Cheapest flight to " + toCity + ":\n" +
-                cheapestFlightToCity.getDetails());
-        */
-        flightDatabase.displayFlights("Paris", "Porto");
+        //flightDatabase.displayCheapestFlightToCity("Warsaw");
+
+        //flightDatabase.displayFlights("Warsaw", "Porto");
     }
 }
