@@ -34,7 +34,7 @@ public class Flight {
         return flightTime;
     }
 
-    public int getFlightTimeInInt(){
+    public int getFlightTimeInMinutes(){
         int h = Integer.parseInt(this.flightTime.substring(0,2));
         int min = Integer.parseInt(this.flightTime.substring(4,6));
         return h * 60 + min;

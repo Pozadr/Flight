@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class User {
@@ -13,13 +14,13 @@ public class User {
         return nick;
     }
 
-    public String[] getRequestFromUser(){  //String["departure", "arrival"]
+    public ArrayList<String> getRequestFromUser(){  //String["departure", "arrival"]
         Scanner keyboard = new Scanner(System.in);
-        String[] request = new String[2];
+        ArrayList<String> request = new ArrayList<>();
         System.out.println("Type departure: ");
-        request[0] = keyboard.next();
+        request.add(keyboard.next());
         System.out.println("Type arrival: ");
-        request[1] = keyboard.next();
+        request.add(keyboard.next());
 
         return request;
     }

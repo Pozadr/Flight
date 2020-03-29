@@ -1,6 +1,3 @@
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class Main {
     public static void main(String[] args){
@@ -30,6 +27,8 @@ public class Main {
 
         //flightDatabase.displayDirectFlights("Warsaw", "Paris");
 
-        flightDatabase.manageRequest("Tokyo", "Berlin");
+        flightDatabase.manageRequest("Berlin", "Porto");
+
+
     }
 }
