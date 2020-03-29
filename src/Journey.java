@@ -9,10 +9,12 @@ public class Journey {
 
     // get
     public Flight getFirst() {
+
         return first;
     }
 
     public Flight getSecond() {
+
         return second;
     }
 

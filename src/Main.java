@@ -27,7 +27,7 @@ public class Main {
 
         //flightDatabase.displayDirectFlights("Warsaw", "Paris");
 
-        flightDatabase.manageRequest("Berlin", "Porto");
+        flightDatabase.manageRequest("Warsaw", "Porto");
 
 
     }

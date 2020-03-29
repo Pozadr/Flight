@@ -28,7 +28,7 @@ public class FlightDatabase {
                 120, "02h 45min"));
         this.flights.add(new Flight("Warsaw", "Porto",
                 190, "01h 20min"));
-        this.flights.add(new Flight("Warsaw", "Paris",
+        this.flights.add(new Flight("Warsaw", "Porto",
                 300, "01h 20min"));
         this.flights.add(new Flight("Warsaw", "Berlin",
                 100, "01h 20min"));
@@ -40,6 +40,17 @@ public class FlightDatabase {
     // ------------------------------------------------------------------------------
 
     //Display
+    public void displayDirectFlights(String start, String end){
+        ArrayList<Flight> results = getDirectFlights(start, end);
+        if(results.isEmpty()){
+            System.out.println("Flight not found.");
+        }
+        System.out.println("Direct flights: ");
+        for(Flight result : results){
+            System.out.println(result.getDetails());
+        }
+    }
+
     public void displayCheapestDirectFlight(String start, String end){
         Flight results = getCheapestDirectFlight(start, end);
         System.out.println("Cheapest direct flight:\n" + results.getDetails());
@@ -56,6 +67,7 @@ public class FlightDatabase {
         if(results.isEmpty()){
             System.out.println("Flight not found.");
         }
+        System.out.println("Journey flights: ");
         for(Journey result : results){
             System.out.println(result.getDetails());
         }
@@ -81,16 +93,6 @@ public class FlightDatabase {
         }
         else{
             System.out.println("Shortest journey is:");
-            System.out.println(result.getDetails());
-        }
-    }
-
-    public void displayDirectFlights(String start, String end){
-        ArrayList<Flight> results = getDirectFlights(start, end);
-        if(results.isEmpty()){
-            System.out.println("Flight not found.");
-        }
-        for(Flight result : results){
             System.out.println(result.getDetails());
         }
     }
@@ -294,7 +296,7 @@ public class FlightDatabase {
     // ------------------------------------------------------------------------------
 
     // Others
-    public boolean checkIfFlightExists(String departure, String arrival){
+    public boolean checkIfDirectFlightExists(String departure, String arrival){
         for (Flight flight : this.flights) {
             if (flight.getDeparture().equals(departure) && flight.getArrival().equals(arrival)) {
                 //System.out.println("Direct flight exists.");
@@ -306,7 +308,8 @@ public class FlightDatabase {
     }
 
     public void manageRequest(String start, String end){
-        if (checkIfFlightExists(start, end)) {
+        if (checkIfDirectFlightExists(start, end)) {
+            displayDirectFlights(start, end);
             displayCheapestDirectFlight(start, end);
             displayShortestDirectFlight(start, end);
         }
