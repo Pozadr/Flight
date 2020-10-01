@@ -1,6 +1,6 @@
 public class Flight {
-    private String departure;
-    private String arrival;
+    private final String departure;
+    private final String arrival;
     private int price;
     private String flightTime;
 
@@ -12,7 +12,7 @@ public class Flight {
         this.flightTime = flightTime;
     }
 
-    // Get
+    // Getters
     public String getDetails() {
         return "Flight from: " + this.departure + " to: " + this.arrival +
                 " cost " + this.price + ". Flight time: " + flightTime;
@@ -38,5 +38,15 @@ public class Flight {
         int h = Integer.parseInt(this.flightTime.substring(0,2));
         int min = Integer.parseInt(this.flightTime.substring(4,6));
         return h * 60 + min;
+    }
+
+
+    // Setters
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setFlightTime(String flightTime) {
+        this.flightTime = flightTime;
     }
 }

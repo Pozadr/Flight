@@ -1,33 +1,22 @@
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
-        FlightDatabase flightDatabase = new FlightDatabase();
+        Scanner scanner = new Scanner(System.in);
+        FlightDatabaseFactory flightDatabase = new FlightDatabaseFactory();
+        FlightDatabaseManagement manageFlightDatabase = new FlightDatabaseManagement();
+
         //User user1 = new User();
 
         //user1.displayNick();
-        //flightDatabase.displayAllFlights();
 
-        //flightDatabase.displayFlightsFromCity("Warsaw");
-        //flightDatabase.displayFlightsToCity("Paris");
-
-        //flightDatabase.checkIfFlightExists("Warsaw", "Paris"); // true
-        //flightDatabase.checkIfFlightExists("Warsaw", "Berlin"); // false
-
-        //ArrayList<String> cities = flightDatabase.getCities();
-        //System.out.println(cities);
-
-        //flightDatabase.displayCheapestFlight();
-
-        //flightDatabase.displayCheapestFlightFromCity("Warsaw");
-
-        //flightDatabase.displayCheapestFlightToCity("Warsaw");
-
-        //flightDatabase.displayFlights("Warsaw", "Berlin");
-        //flightDatabase.displayCheapestJourney("Warsaw", "Berlin");
-
-        //flightDatabase.displayDirectFlights("Warsaw", "Paris");
-
-        flightDatabase.manageRequest("Warsaw", "Porto");
+        System.out.println("Welcome in flight search browser.");
+        System.out.println("Please type request.");
+        System.out.println("Flight from: ");
+        String flightFrom = scanner.next().trim();
+        System.out.println("Flight to: ");
+        String flightTo = scanner.next().trim();
+        manageFlightDatabase.manageRequest(flightFrom, flightTo, flightDatabase.flights);
 
 
     }

@@ -18,9 +18,9 @@ public class User {
         Scanner keyboard = new Scanner(System.in);
         ArrayList<String> request = new ArrayList<>();
         System.out.println("Type departure: ");
-        request.add(keyboard.next());
+        request.add(keyboard.next().trim().toLowerCase());
         System.out.println("Type arrival: ");
-        request.add(keyboard.next());
+        request.add(keyboard.next().trim().toLowerCase());
 
         return request;
     }
