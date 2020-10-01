@@ -1,0 +1,16 @@
+Berlin, Tokyo, 1800, 12h 50min
+Berlin, Warsaw, 77, 00h 50min
+Paris, Berlin, 79, 01h 10min
+Paris, Madrid, 180, 01h 20min
+Paris, Warsaw, 130, 02h 40min
+Madrid, Berlin, 200, 01h 10min
+Madrid, Porto, 102, 02h 10min
+Porto, Warsaw, 412, 04h 20min
+Barcelona, Berlin, 30, 02h 30min
+Tokyo, Warsaw, 2000, 10h 20min
+Warsaw, Porto, 120, 02h 45min
+Warsaw, Porto, 190, 01h 20min
+Warsaw, Porto, 300, 01h 20min
+Warsaw, Berlin, 100, 01h 20min
+Warsaw, Porto, 380, 03h 10min
+Warsaw, Barcelona, 160, 03h 20min

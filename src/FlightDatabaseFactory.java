@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class FlightDatabaseFactory {
     ArrayList<Flight> flights = new ArrayList<Flight>();
@@ -14,31 +17,18 @@ public class FlightDatabaseFactory {
                 180, "01h 20min"));
         this.flights.add(new Flight("Paris", "Warsaw",
                 130, "02h 40min"));
-        this.flights.add(new Flight("Madrid", "Berlin",
-                200, "01h 10min"));
-        this.flights.add(new Flight("Madrid", "Porto",
-                102, "02h 10min"));
-        this.flights.add(new Flight("Porto", "Warsaw",
-                412, "04h 20min"));
-        this.flights.add(new Flight("Barcelona", "Berlin",
-                30, "02h 30min"));
-        this.flights.add(new Flight("Tokyo", "Warsaw",
-                2000, "10h 20min"));
-        this.flights.add(new Flight("Warsaw", "Porto",
-                120, "02h 45min"));
-        this.flights.add(new Flight("Warsaw", "Porto",
-                190, "01h 20min"));
-        this.flights.add(new Flight("Warsaw", "Porto",
-                300, "01h 20min"));
-        this.flights.add(new Flight("Warsaw", "Berlin",
-                100, "01h 20min"));
-        this.flights.add(new Flight("Warsaw", "Porto",
-                380, "03h 10min"));
-        this.flights.add(new Flight("Warsaw", "Barcelona",
-                160, "03h 20min"));
+
     }
 
     public FlightDatabaseFactory(String path) {
-        System.out.println();
+
+        File file = new File(path);
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNext()) {
+                System.out.println(scanner.nextLine() + " ");
+            }
+        } catch (FileNotFoundException  e) {
+            System.out.println("No file found: " + path);
+        }
     }
 }
