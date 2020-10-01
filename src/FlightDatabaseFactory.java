@@ -6,29 +6,29 @@ import java.util.Scanner;
 public class FlightDatabaseFactory {
     ArrayList<Flight> flights = new ArrayList<Flight>();
 
-    public FlightDatabaseFactory() {
-        this.flights.add(new Flight("Berlin", "Tokyo",
-                1800, "12h 50min"));
-        this.flights.add(new Flight("Berlin", "Warsaw",
-                77, "00h 50min"));
-        this.flights.add(new Flight("Paris", "Berlin",
-                79, "01h 10min"));
-        this.flights.add(new Flight("Paris", "Madrid",
-                180, "01h 20min"));
-        this.flights.add(new Flight("Paris", "Warsaw",
-                130, "02h 40min"));
-
-    }
-
     public FlightDatabaseFactory(String path) {
 
         File file = new File(path);
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNext()) {
-                System.out.println(scanner.nextLine() + " ");
+                String[] line = scanner.nextLine().split(",");
+                String departure = line[0].trim();
+                String arrival = line[1].trim();
+                int price = Integer.parseInt(line[2].trim());
+                String flightTime = line[3].trim();
+                flights.add(new Flight(departure, arrival, price, flightTime));
             }
         } catch (FileNotFoundException  e) {
             System.out.println("No file found: " + path);
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Flight flight : flights) {
+            sb.append(flight.getDetails()).append("\n");
+        }
+        return sb.toString();
     }
 }

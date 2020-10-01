@@ -6,11 +6,10 @@ public class Main {
         FlightDatabaseFactory flightDatabase = new FlightDatabaseFactory("FlightDB.txt");
         FlightDatabaseManagement manageFlightDatabase = new FlightDatabaseManagement();
 
-        //User user1 = new User();
+        System.out.println("\n---------- BOARD OF FLIGHTS ----------\n");
+        System.out.println(flightDatabase.toString());
 
-        //user1.displayNick();
-
-        /*System.out.println("Welcome in flight search browser.");
+        System.out.println("Welcome in flight search browser.");
         System.out.println("Please type request.");
         System.out.println("Flight from: ");
         String flightFrom = scanner.next().trim();
@@ -18,7 +17,7 @@ public class Main {
         String flightTo = scanner.next().trim();
         manageFlightDatabase.manageRequest(flightFrom, flightTo, flightDatabase.flights);
 
-         */
+
 
 
     }
